@@ -46,6 +46,10 @@ import CoreGraphics
 import UIKit
 
 
+// ================================================= //
+// ==================== CGFloat ==================== //
+// ================================================= //
+
 public extension CGFloat
 {
     // Usage: CGFloat(90).degreesInRadians and CGFloat(M_PI).radiansInDegrees, etc
@@ -65,6 +69,10 @@ public extension CGFloat
     { return CGFloat.randomUniform01 <= 0.5 }
 }
 
+
+// ================================================= //
+// ==================== CGPoint ==================== //
+// ================================================= //
 
 public extension CGPoint
 {
@@ -132,6 +140,10 @@ extension CGPoint: Printable
     { return "(x: \(x), y: \(y))" }
 }
 
+
+// ================================================== //
+// ==================== CGVector ==================== //
+// ================================================== //
 
 public extension CGVector
 {
@@ -611,6 +623,11 @@ extension CGVector: Printable
     { return "(dx: \(dx), dy: \(dy), mag: \(magnitude()))" }
 }
 
+
+// ================================================= //
+// ==================== UIColor ==================== //
+// ================================================= //
+
 public extension UIColor
 {
     static func randomColor() -> UIColor
@@ -619,5 +636,51 @@ public extension UIColor
         let g = CGFloat.randomUniform01
         let b = CGFloat.randomUniform01
         return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+    }
+}
+
+
+// ==================================================== //
+// ==================== CGGradient ==================== //
+// ==================================================== //
+
+extension CGGradient
+{
+    // The locations array need not be sorted in ascending order, nor normalized to the range [0,1].
+    static func gradientWithColors(colors: [UIColor], atLocations locations: [CGFloat],
+        colorSpace: CGColorSpace = CGColorSpaceCreateDeviceRGB()) -> CGGradient
+    {
+        let numLocations: size_t = locations.count
+        assert(numLocations > 1, "numLocations < 2: A gradient requires at least 2 location-color pairs.")
+        assert(colors.count == locations.count,
+            "colors.count != locations.count: A gradient requires an equal number of locations and colors")
+
+        var tuples = [(CGFloat, UIColor)]()
+        for i in 0..<locations.count
+        { tuples.append( (locations[i], colors[i]) ) }
+
+        var sortedTuples = sorted(tuples) { $0.0 <= $1.0 }
+        let minValue = sortedTuples[0].0
+        let maxValue = sortedTuples.last!.0
+        let deltaValue = maxValue - minValue
+        assert(deltaValue != 0, "Minimum (\(minValue)) and maximum (\(maxValue)) location values must be different.")
+
+        var normalizedLocations = [CGFloat]()
+        var colorComponents = [CGFloat]()
+        for (location, color) in sortedTuples
+        {
+            normalizedLocations.append((location - minValue) / deltaValue)
+
+            var r: CGFloat = 0; var g: CGFloat = 0
+            var b: CGFloat = 0; var a: CGFloat = 0
+            let success = color.getRed(&r, green: &g, blue: &b, alpha: &a)
+
+            assert(success, "color \(color) is not compatible with RGB color space")
+
+            colorComponents.append(r); colorComponents.append(g)
+            colorComponents.append(b); colorComponents.append(a)
+        }
+
+        return CGGradientCreateWithColorComponents(colorSpace, colorComponents, normalizedLocations, numLocations)
     }
 }
