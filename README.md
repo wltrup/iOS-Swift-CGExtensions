@@ -1,5 +1,9 @@
 # CGExtensions
-A `Swift` collection of useful extensions to `CGFloat`, `CGPoint`, and `CGVector`, plus test suites. If you need 2-dimensional vectors then you'll want this.
+A `Swift` collection of useful extensions to `CGFloat`, `CGPoint`, `CGVector`, and `CGGradient`, plus test suites. If you need 2-dimensional vectors then you'll want this.
+
+## Latest
+
+2015.05.05: Added an extension to `CGGradient` to make it easier to create gradients from `UIColor` and corresponding location arrays.
 
 ## Why?
 
