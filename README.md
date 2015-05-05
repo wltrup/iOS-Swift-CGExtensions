@@ -3,7 +3,7 @@ A `Swift` collection of useful extensions to `CGFloat`, `CGPoint`, `CGVector`, a
 
 ## Latest
 
-2015.05.05: Added an extension to `CGGradient` to make it easier to create gradients from `UIColor` and corresponding location arrays. The extension defines the static method
+**2015.05.05:** Added an extension to `CGGradient` to make it easier to create gradients from `UIColor` and corresponding location arrays. The extension defines the static method
 
 ```swift
 static func gradientWithColors(colors: [UIColor], atLocations locations: [CGFloat],
