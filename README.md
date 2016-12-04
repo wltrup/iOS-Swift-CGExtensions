@@ -1,6 +1,9 @@
 # CGExtensions
 A `Swift` collection of useful extensions to `CGFloat`, `CGPoint`, `CGVector`, and `CGGradient`, plus test suites. If you need 2-dimensional vectors then you'll want this.
 
+## IMPORTANT
+2016.12.03: This project has been **deprecated** and replaced by separate libraries compatible with Swift 3.0. Please refer to [Swift-WTExtensions](https://github.com/wltrup/Swift-WTExtensions).
+
 ## Latest
 
 **2015.05.05:** Added an extension to `CGGradient` to make it easier to create gradients from `UIColor` and corresponding location arrays. The extension defines the static method
