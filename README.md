@@ -2,7 +2,7 @@
 A `Swift` collection of useful extensions to `CGFloat`, `CGPoint`, `CGVector`, and `CGGradient`, plus test suites. If you need 2-dimensional vectors then you'll want this.
 
 ## IMPORTANT
-2016.12.03: This project has been **deprecated** and replaced by separate libraries compatible with Swift 3.0. Please refer to [Swift-WTExtensions](https://github.com/wltrup/Swift-WTExtensions).
+2016.12.03: This project has been **deprecated** and replaced by separate libraries compatible with Swift 3.0. Please refer to [WTOpenSource](https://github.com/wltrup/WTOpenSource).
 
 ## Latest
 
